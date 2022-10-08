@@ -2,25 +2,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Film Site</title>
 </head>
 <body>
 	<h1>Film Site</h1>
-	<form action="" method="GET">
+	<form action="showFilm.do" method="GET">
 		Search By Id:
-		<input type="text" name="Id" size="4"/> 
+		<input type="text" name="filmId" size="4"/> 
 		<input type="submit" value="Submit" />
 	</form>
-	<form action="" method="GET">
+	<form action="showFilm.do" method="GET">
 		Search By Keyword:
-		<input type="text" name="Id" size="4"/> 
+		<input type="text" name="keyword" size="4"/> 
 		<input type="submit" value="Submit" />
 	</form>
-	<form action="" method="GET">
-		Add Film:
-		<input type="text" name="Id" size="4"/> 
-		<input type="submit" value="Submit" />
-	</form>
+	<a href = "addFilm.html"> Add Film </a>
 	<form action="" method="GET">
 		Update Film:
 		<input type="text" name="Id" size="4"/> 

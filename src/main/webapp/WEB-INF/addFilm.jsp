@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Film Details</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<h1> Film Details</h1>
-${film.title }
 </body>
 </html>
