@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.FilmDAO;
@@ -49,15 +50,19 @@ public class FilmController {
 		return mv;
 	}
 	
-//	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST) //update
-//	public ModelAndView deleteFilm(Integer filmId) {
-//		ModelAndView mv = new ModelAndView();
-//		Boolean deleted = filmDao.deleteFilm(filmId);
-//		//mv.addObject("film", film);
-//		//mv.setViewName("film"); //If view resolver
-////		mv.setViewName("WEB-INF/deleteConfirmation.jsp");
-//		return mv;
-//	}
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST) //update
+	public ModelAndView deleteFilm(@RequestParam Integer filmId) {
+		ModelAndView mv = new ModelAndView();
+		Film film = null;
+		film = filmDao.findFilmById(filmId);
+		Boolean deleted = filmDao.deleteFilm(filmId);
+		if(deleted ==true) {
+			film = null;
+			mv.addObject("film", film);
+		}
+		mv.setViewName("WEB-INF/deleteConfirm.jsp");
+		return mv;
+	}
 //	
 //	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET, params = "filmId")  //delete
 //	public ModelAndView showFilm(Integer filmId) {

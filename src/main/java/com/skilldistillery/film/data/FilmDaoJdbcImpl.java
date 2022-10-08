@@ -312,6 +312,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		boolean deleted = false;
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
 			String sql = "DELETE FROM film WHERE id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
@@ -319,6 +320,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			if (updateCount == 1) {
 				deleted = true;
 			}
+			conn.commit();
 			stmt.close();
 			conn.close();
 		} catch (SQLException sqle) {
