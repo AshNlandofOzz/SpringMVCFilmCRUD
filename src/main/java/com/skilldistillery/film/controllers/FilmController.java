@@ -64,14 +64,16 @@ public class FilmController {
 		return mv;
 	}
 //	
-//	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET, params = "filmId")  //delete
-//	public ModelAndView showFilm(Integer filmId) {
-//		ModelAndView mv = new ModelAndView();
-//		Film film = filmDao.findFilmById(filmId);
-//		mv.addObject("film", film);
-//		//mv.setViewName("film"); //If view resolver
-//		mv.setViewName("WEB-INF/film.jsp");
-//		return mv;
-//	}
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)  //delete
+	public ModelAndView updateFilm(@RequestParam Integer filmId, Film film) {
+		ModelAndView mv = new ModelAndView();
+		film = null;
+		film = filmDao.findFilmById(filmId);
+		film = filmDao.updateFilm(filmId, film);
+		//mv.addObject("film", film);
+		//mv.setViewName("film"); //If view resolver
+		mv.setViewName("WEB-INF/updateFilm.jsp");
+		return mv;
+	}
 
 }
