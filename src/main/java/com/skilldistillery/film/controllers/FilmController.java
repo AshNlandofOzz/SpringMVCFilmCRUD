@@ -40,18 +40,20 @@ public class FilmController {
 	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST) //addFilm
 	public ModelAndView addFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(film + "***********");
 		film = filmDao.createFilm(film);
 		mv.addObject("film", film);
+		System.out.println(film + "***********");
 		//mv.setViewName("film"); //If view resolver
-		mv.setViewName("WEB-INF/index.html");
+		mv.setViewName("WEB-INF/showCreatedFilm.jsp"); 
 		return mv;
 	}
-//	
-//	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET, params = "filmId") //update
-//	public ModelAndView showFilm(Integer filmId) {
+	
+//	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST) //update
+//	public ModelAndView deleteFilm(Integer filmId) {
 //		ModelAndView mv = new ModelAndView();
-//		Film film = filmDao.findFilmById(filmId);
-//		mv.addObject("film", film);
+//		Film film = filmDao.deleteFilm(filmId);
+//		mv.Object("film", film);
 //		//mv.setViewName("film"); //If view resolver
 //		mv.setViewName("WEB-INF/film.jsp");
 //		return mv;

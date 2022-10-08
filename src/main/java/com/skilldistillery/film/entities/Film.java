@@ -8,11 +8,11 @@ package com.skilldistillery.film.entities;
 		private int id;
 		private String title;
 		private String description;
-		private String releaseYear;
+		private int releaseYear;
 		private int languageId;
 		private int rentalDuration;
 		private double rentalRate;
-		private double length;
+		private int length;
 		private double replacementCost;
 		private String rating;
 		private String specialFeatures;
@@ -44,10 +44,10 @@ package com.skilldistillery.film.entities;
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public String getReleaseYear() {
+		public int getReleaseYear() {
 			return releaseYear;
 		}
-		public void setReleaseYear(String releaseYear) {
+		public void setReleaseYear(int releaseYear) {
 			this.releaseYear = releaseYear;
 		}
 		public int getLanguageId() {
@@ -68,10 +68,10 @@ package com.skilldistillery.film.entities;
 		public void setRentalRate(double rentalRate) {
 			this.rentalRate = rentalRate;
 		}
-		public double getLength() {
+		public int getLength() {
 			return length;
 		}
-		public void setLength(double length) {
+		public void setLength(int length) {
 			this.length = length;
 		}
 		public double getReplacementCost() {
@@ -118,8 +118,8 @@ package com.skilldistillery.film.entities;
 		public Film() {
 			
 		}
-		public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
-				double rentalRate, double length, double replacementCost, String rating, String specialFeatures,
+		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+				double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 				List<Actor> actors) {
 			super();
 			this.id = id;
