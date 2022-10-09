@@ -135,6 +135,20 @@ package com.skilldistillery.film.entities;
 			this.specialFeatures = specialFeatures;
 			this.actors = actors;
 		}
+		
+		public Film (String title, String description, int releaseYear, int languageId, int rentalDuration,
+				double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+			this.title = title;
+			this.description = description;
+			this.releaseYear = releaseYear;
+			this.languageId = languageId;
+			this.rentalDuration = rentalDuration;
+			this.rentalRate = rentalRate;
+			this.length = length;
+			this.replacementCost = replacementCost;
+			this.rating = rating;
+			this.specialFeatures = specialFeatures;
+		}
 		@Override
 		public String toString() {
 			return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear

@@ -28,8 +28,8 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET, params = "keyword") //keyword  
-	public ModelAndView showFilm(String keyword) {
+	@RequestMapping(path = "showFilms.do", method = RequestMethod.GET, params = "keyword") //keyword  
+	public ModelAndView showFilms(String keyword) {
 		ModelAndView mv = new ModelAndView();
 		ArrayList<Film> film = filmDao.findByKeyword(keyword);
 		mv.addObject("listOfFilms", film);
@@ -68,9 +68,11 @@ public class FilmController {
 	public ModelAndView updateFilm(@RequestParam Integer filmId, Film film) {
 		ModelAndView mv = new ModelAndView();
 		film = null;
+		System.out.println(film + "***********");
 		film = filmDao.findFilmById(filmId);
 		film = filmDao.updateFilm(filmId, film);
 		mv.addObject("film", film);
+		System.out.println(film + "***********");
 		//mv.setViewName("film"); //If view resolver
 		mv.setViewName("WEB-INF/updateFilm.jsp");
 		return mv;

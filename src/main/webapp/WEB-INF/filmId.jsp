@@ -32,7 +32,7 @@
 			<p>No film found by Id</p>
 		</c:otherwise>
 	</c:choose>
-	<c:if test="${not empty film.id }">
+	<%-- <c:if test="${film.id !=null }"> --%>
 	<form action = "updateFilm.do" method = "POST">
 		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
 		Title: <input type="text" name="title" value = "${film.title }"  /><br>
@@ -46,13 +46,13 @@
 		Rating: <input type="text" name="rating" value = "${film.rating}" /> <br>
 		Special Features: <input type="text" name="specialFeatures" value ="${film.specialFeatures}"  /> <br>
 		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
-	<input name = "submit" value = "update" type = "submit"/> 
+	<input name = "submit" value = "Update Film Data" type = "submit"/> 
 	</form> 
 	
 	
 	
 	<!-- <a href="updateFilm.html"> Update Film </a> -->
-	</c:if>
+	<%-- </c:if> --%>
 	<br>
 	
 	<c:if test="${film.id <1000}">

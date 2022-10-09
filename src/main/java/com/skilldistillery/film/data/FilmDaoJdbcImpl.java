@@ -354,32 +354,33 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			stmt.setString(10, film.getSpecialFeatures());
 			stmt.setInt(11, film.getId());
 
-
 			int updateCount = stmt.executeUpdate();
-			if (updateCount == 1) {
-				sql = "DELETE FROM film WHERE id = ?";
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, film.getId());
-				updateCount = stmt.executeUpdate();
-				sql = "INSERT INTO film (title, language_id, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				stmt = conn.prepareStatement(sql);
-				stmt.setString(1, film.getTitle());
-				stmt.setInt(2, film.getLanguageId());
-				stmt.setString(3, film.getDescription());
-				stmt.setInt(4, film.getReleaseYear());
-				stmt.setInt(5, film.getRentalDuration());
-				stmt.setDouble(6, film.getRentalRate());
-				stmt.setInt(7,film.getLength());
-				stmt.setDouble(8, film.getReplacementCost());
-				stmt.setString(9, film.getRating());
-				stmt.setString(10, film.getSpecialFeatures());
+			
+//			if (updateCount == 1) {
+//				sql = "DELETE FROM film WHERE id = ?";
+//				stmt = conn.prepareStatement(sql);
+//				stmt.setInt(1, film.getId());
+//				
+//				updateCount = stmt.executeUpdate();
+//				sql = "INSERT INTO film (title, language_id, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//				stmt = conn.prepareStatement(sql);
+//				stmt.setString(1, film.getTitle());
+//				stmt.setInt(2, film.getLanguageId());
+//				stmt.setString(3, film.getDescription());
+//				stmt.setInt(4, film.getReleaseYear());
+//				stmt.setInt(5, film.getRentalDuration());
+//				stmt.setDouble(6, film.getRentalRate());
+//				stmt.setInt(7,film.getLength());
+//				stmt.setDouble(8, film.getReplacementCost());
+//				stmt.setString(9, film.getRating());
+//				stmt.setString(10, film.getSpecialFeatures());
 				//stmt.setInt(11, film.getId());
 
 				conn.commit(); // COMMIT TRANSACTION
 
 				stmt.close();
 				conn.close();
-			}
+//			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			film = null;
