@@ -37,6 +37,22 @@ public class FilmController {
 		mv.setViewName("WEB-INF/filmByKeyword.jsp");
 		return mv;
 	}
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)  //delete
+	public ModelAndView updateFilm(int filmId, Film film) {//@RequestParam Integer filmId, 
+		ModelAndView mv = new ModelAndView();
+		//film = null;
+		System.out.println(film + "***********");
+		film.setId(filmId);
+		//film = filmDao.findFilmById(filmId);
+		System.out.println(film + "***********");
+		Film updatedFilm = filmDao.updateFilm(filmId, film);
+		//film = filmDao.updateFilm(filmId, film);
+		mv.addObject("film", updatedFilm);
+		System.out.println(film + "***********");
+		//mv.setViewName("film"); //If view resolver
+		mv.setViewName("WEB-INF/updateFilm.jsp");
+		return mv;
+	}
 	
 	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST) //addFilm
 	public ModelAndView addFilm(Film film) {
@@ -63,23 +79,18 @@ public class FilmController {
 		mv.setViewName("WEB-INF/deleteConfirm.jsp");
 		return mv;
 	}
-//	
-	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)  //delete
-	public ModelAndView updateFilm(int filmId, Film film) {//@RequestParam Integer filmId, 
+	
+	
+	@RequestMapping(path = "findFilmInfo.do", method = RequestMethod.GET, params = "filmId")
+	public ModelAndView getFilm(int filmId) { //gets film details
 		ModelAndView mv = new ModelAndView();
-		//film = null;
-		System.out.println(film + "***********");
-		film.setId(filmId);
-		//film = filmDao.findFilmById(filmId);
-		System.out.println(film + "***********");
-		Film updatedFilm = filmDao.updateFilm(filmId, film);
-		//film = filmDao.updateFilm(filmId, film);
-		mv.addObject("film", updatedFilm);
-		System.out.println(film + "***********");
-		//mv.setViewName("film"); //If view resolver
+		Film details = filmDao.findFilmById(filmId); //assigns film details to details obj
+		mv.addObject("film", filmDao.findFilmById(filmId)); //assigns to DAO
+		System.out.println(details);
 		mv.setViewName("WEB-INF/updateFilm.jsp");
 		return mv;
 	}
+//	
 }
 	
 //	@RequestMapping(path = "updateOrDelete.do")

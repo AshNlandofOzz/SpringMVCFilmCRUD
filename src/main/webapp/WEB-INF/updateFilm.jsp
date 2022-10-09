@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-<h1>Film Details</h1>
+<h1>Update Film</h1>
 
 	<c:choose>
 	<form action = "updateFilm.do" method = "POST">

@@ -17,6 +17,7 @@ package com.skilldistillery.film.entities;
 		private String rating;
 		private String specialFeatures;
 		private String language;
+		private String category;
 		public String getLanguage() {
 			return language;
 		}
@@ -26,6 +27,12 @@ package com.skilldistillery.film.entities;
 		private List<Actor> actors;
 		
 		
+		public List<Actor> getActors() {
+			return actors;
+		}
+		public void setActors(List<Actor> actors) {
+			this.actors = actors;
+		}
 		public int getId() {
 			return id;
 		}
@@ -119,7 +126,7 @@ package com.skilldistillery.film.entities;
 			
 		}
 		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-				double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
+				double rentalRate, int length, double replacementCost, String rating, String specialFeatures, String category, 
 				List<Actor> actors) {
 			super();
 			this.id = id;
@@ -137,7 +144,7 @@ package com.skilldistillery.film.entities;
 		}
 		
 		public Film (String title, String description, int releaseYear, int languageId, int rentalDuration,
-				double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+				double rentalRate, int length, double replacementCost, String rating, String specialFeatures, String category) {
 			this.title = title;
 			this.description = description;
 			this.releaseYear = releaseYear;
@@ -155,6 +162,12 @@ package com.skilldistillery.film.entities;
 					+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 					+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
 					+ ", specialFeatures=" + specialFeatures + ", actors=" + actors + "]";
+		}
+		public String getCategory() {
+			return category;
+		}
+		public void setCategory(String category) {
+			this.category = category;
 		}
 		
 
