@@ -330,7 +330,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film updateFilm(int filmId, Film film) {
+	public Film updateFilm(int filmId, Film film) { //
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
@@ -341,6 +341,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
 			
+//			film.setDescription(filmResult.getString("description"));
 			
 			stmt.setString(1, film.getTitle());
 			stmt.setInt(2, film.getLanguageId());
@@ -354,19 +355,24 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			stmt.setString(10, film.getSpecialFeatures());
 			stmt.setInt(11, film.getId());
 
+			//int updateCount = 
 			int updateCount = stmt.executeUpdate();
 			
-//			if (updateCount == 1) {
-//				sql = "DELETE FROM film WHERE id = ?";
-//				stmt = conn.prepareStatement(sql);
-//				stmt.setInt(1, film.getId());
+			if (updateCount == 1) {
 //				
-//				updateCount = stmt.executeUpdate();
-//				sql = "INSERT INTO film (title, language_id, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//				stmt = conn.prepareStatement(sql);
-//				stmt.setString(1, film.getTitle());
+//				film.setTitle("title");
+//				film.setLanguageId("language_id");
+//				film.setDescription("description");
+//				film.setReleaseYear("release_year");
+//				film.setRentalDuration(filmResult.getInt("rental_duration"));
+//				film.setRentalRate(filmResult.getDouble("rental_rate"));
+//				film.setLength(filmResult.getInt("length"));
+//				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+//				film.setRating(filmResult.getString("rating"));
+//				
+				stmt.setString(1, film.getTitle());
 //				stmt.setInt(2, film.getLanguageId());
-//				stmt.setString(3, film.getDescription());
+//				film.setDescription("description");
 //				stmt.setInt(4, film.getReleaseYear());
 //				stmt.setInt(5, film.getRentalDuration());
 //				stmt.setDouble(6, film.getRentalRate());
@@ -374,13 +380,16 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 //				stmt.setDouble(8, film.getReplacementCost());
 //				stmt.setString(9, film.getRating());
 //				stmt.setString(10, film.getSpecialFeatures());
-				//stmt.setInt(11, film.getId());
-
+//				stmt.setInt(11, film.getId());
+//				System.out.println("help");
 				conn.commit(); // COMMIT TRANSACTION
-
+			}else {
+				System.out.println("update didn't work");
+			}
 				stmt.close();
 				conn.close();
-//			}
+			
+				
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			film = null;

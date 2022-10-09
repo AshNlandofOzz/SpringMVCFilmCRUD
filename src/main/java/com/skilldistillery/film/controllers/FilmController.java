@@ -65,11 +65,12 @@ public class FilmController {
 	}
 //	
 	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)  //delete
-	public ModelAndView updateFilm(@RequestParam Integer filmId, Film film) {
+	public ModelAndView updateFilm(@RequestParam Integer filmId, Film film) {//@RequestParam Integer filmId, 
 		ModelAndView mv = new ModelAndView();
-		film = null;
+		//film = null;
 		System.out.println(film + "***********");
 		film = filmDao.findFilmById(filmId);
+		System.out.println(film + "***********");
 		film = filmDao.updateFilm(filmId, film);
 		mv.addObject("film", film);
 		System.out.println(film + "***********");
