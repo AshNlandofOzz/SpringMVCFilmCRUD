@@ -14,6 +14,7 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<ul>
+				<li>${film.id}</li>
 				<li>${film.title}</li>
 				<li>${film.description }</li>
 				<li>${film.releaseYear}</li>

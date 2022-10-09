@@ -336,7 +336,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			conn.setAutoCommit(false);
 			String sql = "UPDATE film  SET title = ?, language_id = ?, description = ?, release_year = ?, rental_duration = ?, "
 					+ "rental_rate = ?, length = ?, replacement_cost = ?, rating = ? ,"
-					+ " special_features = ? where film.id = ?";
+					+ " special_features = ? WHERE id = ?";
 					// TODO: Add the rest of the film properties
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			
@@ -352,29 +352,28 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			stmt.setDouble(8, film.getReplacementCost());
 			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
-			stmt.setInt(11,  film.getId());
+			stmt.setInt(11, film.getId());
 
 
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 				sql = "DELETE FROM film WHERE id = ?";
 				stmt = conn.prepareStatement(sql);
-				
 				stmt.setInt(1, film.getId());
 				updateCount = stmt.executeUpdate();
-				sql = "INSERT INTO film (id, title, language_id, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				sql = "INSERT INTO film (title, language_id, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, film.getId());
-				stmt.setString(2, film.getTitle());
-				stmt.setInt(3, film.getLanguageId());
-				stmt.setString(4, film.getDescription());
-				stmt.setInt(5, film.getReleaseYear());
-				stmt.setInt(6, film.getRentalDuration());
-				stmt.setDouble(7, film.getRentalRate());
-				stmt.setInt(8,film.getLength());
-				stmt.setDouble(9, film.getReplacementCost());
-				stmt.setString(10, film.getRating());
-				stmt.setString(11, film.getSpecialFeatures());
+				stmt.setString(1, film.getTitle());
+				stmt.setInt(2, film.getLanguageId());
+				stmt.setString(3, film.getDescription());
+				stmt.setInt(4, film.getReleaseYear());
+				stmt.setInt(5, film.getRentalDuration());
+				stmt.setDouble(6, film.getRentalRate());
+				stmt.setInt(7,film.getLength());
+				stmt.setDouble(8, film.getReplacementCost());
+				stmt.setString(9, film.getRating());
+				stmt.setString(10, film.getSpecialFeatures());
+				//stmt.setInt(11, film.getId());
 
 				conn.commit(); // COMMIT TRANSACTION
 
@@ -387,6 +386,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 
 		return film;
+	
+
 	}
 
 

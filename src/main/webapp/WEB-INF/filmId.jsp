@@ -14,6 +14,7 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<ul>
+				<li>${film.id }</li>
 				<li>${film.title}</li>
 				<li>${film.description }</li>
 				<li>${film.releaseYear}</li>
@@ -33,6 +34,7 @@
 	</c:choose>
 	<c:if test="${not empty film.id }">
 	<form action = "updateFilm.do" method = "POST">
+		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
 		Title: <input type="text" name="title" value = "${film.title }"  /><br>
 		Description: <input type="text" name="description" value = "${film.description }" /><br>
 		Release Year: <input type="text" name="releaseYear" value = "${film.releaseYear }"/> <br>
@@ -43,7 +45,8 @@
 		Replacement Cost: <input type="text" name="replacementCost" value = "${film.replacementCost}" /> <br>
 		Rating: <input type="text" name="rating" value = "${film.rating}" /> <br>
 		Special Features: <input type="text" name="specialFeatures" value ="${film.specialFeatures}"  /> <br>
-		<input name = "submit" value = "submit" type = "submit"/> 
+		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
+	<input name = "submit" value = "update" type = "submit"/> 
 	</form> 
 	
 	
@@ -63,6 +66,11 @@
 	<input name = "submit" value = "delete" type = "submit"/> 
 	 </form>
 	</c:if>
+<%-- 		</form>
+	<form action = "updateFilm.do" method = "POST"> 
+	<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
+	<input name = "submit" value = "update" type = "submit"/> 
+	</form> --%>
 
 </body>
 </html>

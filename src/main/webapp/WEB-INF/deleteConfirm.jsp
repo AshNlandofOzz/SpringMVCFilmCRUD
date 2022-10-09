@@ -9,10 +9,10 @@
 </head>
 <body>
 
- <c:if test = "${film  !empty}">
+ <c:if test = "${! empty film}">
  	<p> film could not be deleted </p>
  </c:if>
- <c:if test = "${film  empty}">
+ <c:if test = "${empty film}">
  	<p> Film deleted </p>
  </c:if>
 </body>

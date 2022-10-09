@@ -65,12 +65,11 @@ public class FilmController {
 	}
 //	
 	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)  //delete
-	public ModelAndView updateFilm(Integer filmId, Film film) {
+	public ModelAndView updateFilm(@RequestParam Integer filmId, Film film) {
 		ModelAndView mv = new ModelAndView();
 		film = null;
 		film = filmDao.findFilmById(filmId);
-		int newFilmId = film.getId();
-		film = filmDao.updateFilm(newFilmId, film);
+		film = filmDao.updateFilm(filmId, film);
 		mv.addObject("film", film);
 		//mv.setViewName("film"); //If view resolver
 		mv.setViewName("WEB-INF/updateFilm.jsp");
