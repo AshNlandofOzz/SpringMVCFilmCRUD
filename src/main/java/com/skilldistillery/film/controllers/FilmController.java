@@ -65,18 +65,23 @@ public class FilmController {
 	}
 //	
 	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)  //delete
-	public ModelAndView updateFilm(@RequestParam Integer filmId, Film film) {//@RequestParam Integer filmId, 
+	public ModelAndView updateFilm(int filmId, Film film) {//@RequestParam Integer filmId, 
 		ModelAndView mv = new ModelAndView();
 		//film = null;
 		System.out.println(film + "***********");
-		film = filmDao.findFilmById(filmId);
+		film.setId(filmId);
+		//film = filmDao.findFilmById(filmId);
 		System.out.println(film + "***********");
-		film = filmDao.updateFilm(filmId, film);
-		mv.addObject("film", film);
+		Film updatedFilm = filmDao.updateFilm(filmId, film);
+		//film = filmDao.updateFilm(filmId, film);
+		mv.addObject("film", updatedFilm);
 		System.out.println(film + "***********");
 		//mv.setViewName("film"); //If view resolver
 		mv.setViewName("WEB-INF/updateFilm.jsp");
 		return mv;
 	}
-
 }
+	
+//	@RequestMapping(path = "updateOrDelete.do")
+//
+//}
