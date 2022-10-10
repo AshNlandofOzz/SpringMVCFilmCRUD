@@ -59,7 +59,7 @@
 		
 	<form action = "deleteFilm.do" method = "POST"> 
 	<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
-	<input name = "submit" value = "delete" type = "submit"/> 
+	<input name = "submit" value = "Delete" type = "submit"/> 
 	 </form>
 	</c:if>
 	<%-- <c:if test="${film.id !=null }"> --%>
@@ -79,6 +79,9 @@
 		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
 	
 	</form> 
+	<form action="index.html">
+    	<input type="submit" value="Main Menu" />
+	</form>
 	
 	
 	

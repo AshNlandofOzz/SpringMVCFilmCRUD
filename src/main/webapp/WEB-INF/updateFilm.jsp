@@ -25,6 +25,9 @@
 		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
 	<input name = "submit" value = "Update Film Data" type = "submit"/> 
 	</form>
+	<form action="index.html">
+    <input type="submit" value="Main Menu" />
+	</form>
 	</c:choose>
 	
 </body>
