@@ -22,6 +22,7 @@
 		Replacement Cost: <input type="text" name="replacementCost" value = "${film.replacementCost}" /> <br>
 		Rating: <input type="text" name="rating" value = "${film.rating}" /> <br>
 		Special Features: <input type="text" name="specialFeatures" value ="${film.specialFeatures}"  /> <br>
+<%-- 		Category: <input type="text" name="category" value ="${film.Category}"  /> <br> --%>
 		<input name = "filmId" value = "${film.id }" type = "number" hidden = "true"/> 
 	<input name = "submit" value = "Update Film Data" type = "submit"/> 
 	</form>

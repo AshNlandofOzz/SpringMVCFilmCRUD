@@ -33,9 +33,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 					+ "film.replacement_cost, film.rating, film.special_features,  language.name "
 					+ "FROM film JOIN language ON film.language_id = language.id " + "WHERE film.id = ?";
 			
-			String sql2 = "SELECT category.name from category"
-					+ "join film_category on id = film_category.film_id"
-					+ " join film on film_category.film_id = film.id where film.id = ?"; //do query
+			String sql2 = "SELECT category.name from category join film_category on category.id = film_category.film_id"
+					+ " join film on film_category.film_id = film.id where film.id = ?";
 			
 //			String sql = "SELECT film.id, film.title, film.description, film.release_year,film.language_id,"
 //					+ " film.rental_duration, film.rental_rate, film.length,film.replacement_cost, film.rating,"
@@ -49,7 +48,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			stmt.setInt(1, filmId);
 			PreparedStatement stmt2 = conn.prepareStatement(sql2);
 			stmt2.setInt(1, filmId);
-//			stmt = conn.prepareStatement(sql1);
+//			stmt = conn.prepareStatement(sql);
 			
 			film = new Film();
 			ResultSet filmResult = stmt.executeQuery();
@@ -68,13 +67,13 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
 				film.setLanguage(filmResult.getString("name"));
-				
+		
 				film.setActors(findActorsByFilmId(filmId));
 				
 			ResultSet filmResult2 = stmt2.executeQuery();
 			
 			if (filmResult2.next()) {
-				film.setCategory(sql2);
+				film.setCategory(filmResult.getString("category.name"));
 				
 			}
 				
@@ -120,7 +119,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 					+ "FROM film JOIN language ON film.language_id = language.id WHERE film.title LIKE ?  "
 					+ "OR film.description LIKE ?";
 
-//			String sql2 = "SELECT category.name from category join film_category on id = film_category.film_id"
+//			String sql2 = "SELECT category.name from category join film_category on category.id = film_category.film_id"
 //					+ " join film on film_category.film_id = film.id where film.title LIKE ? or film.description"
 //					+ " LIKE ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -147,7 +146,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
 				film.setLanguage(filmResult.getString("name"));
-//				film.setActors(findActorsByFilmId(film.getId())); 
+				film.setActors(findActorsByFilmId(film.getId())); 
 //				film.setCategory(filmResult.getString("category.name"));
 				
 //				ResultSet filmResult2 = stmt2.executeQuery();
@@ -200,6 +199,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 		return actors;
 	}
+	
+	
 
 	public Actor createActor(Actor actor) {
 		Connection conn = null;
