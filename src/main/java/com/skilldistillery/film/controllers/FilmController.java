@@ -91,9 +91,7 @@ public class FilmController {
 		mv.setViewName("WEB-INF/updateFilm.jsp");
 		return mv;
 	}
-//	
+	
 }
 	
-//	@RequestMapping(path = "updateOrDelete.do")
-//
-//}
+
