@@ -140,6 +140,7 @@ package com.skilldistillery.film.entities;
 			this.replacementCost = replacementCost;
 			this.rating = rating;
 			this.specialFeatures = specialFeatures;
+			this.category = category;
 			this.actors = actors;
 		}
 		

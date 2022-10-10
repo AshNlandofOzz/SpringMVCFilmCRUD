@@ -28,23 +28,34 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 
-//			String sql = "SELECT film.id, film.title, film.description, film.release_year, "
-//					+ "film.language_id, film.rental_duration, film.rental_rate, film.length, "
-//					+ "film.replacement_cost, film.rating, film.special_features,  language.name "
-//					+ "FROM film JOIN language ON film.language_id = language.id " + "WHERE film.id = ?";
+			String sql = "SELECT film.id, film.title, film.description, film.release_year, "
+					+ "film.language_id, film.rental_duration, film.rental_rate, film.length, "
+					+ "film.replacement_cost, film.rating, film.special_features,  language.name "
+					+ "FROM film JOIN language ON film.language_id = language.id " + "WHERE film.id = ?";
 			
-			String sql = "SELECT film.id, film.title, film.description, film.release_year,film.language_id,"
-					+ " film.rental_duration, film.rental_rate, film.length,film.replacement_cost, film.rating,"
-					+ " film.special_features,  language.name, category.name FROM film JOIN language ON "
-					+ "film.language_id = language.id JOIN film_category on film.id = film_category.film_id JOIN category "
-					+ "ON film_category.category_id = category.id  WHERE film.id = ?";
+			String sql2 = "SELECT category.name from category"
+					+ "join film_category on id = film_category.film_id"
+					+ " join film on film_category.film_id = film.id where film.id = ?"; //do query
+			
+//			String sql = "SELECT film.id, film.title, film.description, film.release_year,film.language_id,"
+//					+ " film.rental_duration, film.rental_rate, film.length,film.replacement_cost, film.rating,"
+//					+ " film.special_features,  language.name, category.name FROM film JOIN language ON "
+//					+ "film.language_id = language.id JOIN film_category on film.id = film_category.film_id JOIN category "
+//					+ "ON film_category.category_id = category.id  WHERE film.id = ?";
+			
+			
+			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
-
+			PreparedStatement stmt2 = conn.prepareStatement(sql2);
+			stmt2.setInt(1, filmId);
+//			stmt = conn.prepareStatement(sql1);
+			
+			film = new Film();
 			ResultSet filmResult = stmt.executeQuery();
 
 			if (filmResult.next()) {
-				film = new Film();
+//				film = new Film();
 				film.setId(filmResult.getInt("id"));
 				film.setTitle(filmResult.getString("Title"));
 				film.setDescription(filmResult.getString("description"));
@@ -57,8 +68,17 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
 				film.setLanguage(filmResult.getString("name"));
-				film.setCategory(filmResult.getString("name"));
+				
 				film.setActors(findActorsByFilmId(filmId));
+				
+			ResultSet filmResult2 = stmt2.executeQuery();
+			
+			if (filmResult2.next()) {
+				film.setCategory(sql2);
+				
+			}
+				
+//				film.setCategory(filmResult.getString("name"));
 				
 
 			}

@@ -20,8 +20,9 @@ public class FilmController {
 	
 	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET,  params = "filmId") //filmId ,
 	public ModelAndView showFilm(Integer filmId) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView(); //try update rather than new instantiation
 		Film film = filmDao.findFilmById(filmId);
+		
 		mv.addObject("film", film);
 		//mv.setViewName("film"); //If view resolver
 		mv.setViewName("WEB-INF/filmId.jsp");
